@@ -3,7 +3,7 @@
 // chp2-FirstProgram
 //
 // Created by @HKuz on 2/2/17
-// Exercises from Chapter 2 Compiling and Running Your First Program
+// Exercises from Chapter 2: Compiling and Running Your First Program
 //
 
 #include <stdio.h>

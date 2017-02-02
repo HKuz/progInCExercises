@@ -1,4 +1,4 @@
-# Programming InC - Exercises
+# Programming In C - Exercises
 
 
-A repository to hold the book exercises from Programming in C 4th Edition, by author Stephen G. Kochan.
+A repository to hold my code for the book exercises in *Programming in C* Fourth Edition, by author Stephen G. Kochan.
