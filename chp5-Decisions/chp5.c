@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-
+#include <math.h>
 
 // Function Prototypes
 int checkDivisibility(void);
@@ -194,7 +194,7 @@ int numWords(void) {
   // Asks user for an integer, outputs the word form of each digit
 
   int places = 0, digit;
-  double number;
+  double number, tempNumber;
 
   printf("Enter an integer and get the digits read in words: ");
   scanf("%lf", &number);
@@ -209,16 +209,17 @@ int numWords(void) {
     return 0;
   }
 
-  // Get how many places in the number and make it a decimal
-  while (number >= 1) {
-    number /= 10;
+  // Get how many places (digits) in the number
+  tempNumber = number;
+  while (tempNumber >= 1) {
+    tempNumber /= 10;
     places++;
   }
 
-  for (; places > 0; places--) {
-    number *= 10;
-    digit = (int) number;
-    number -= digit;
+  for (--places; places >= 0; --places) {
+    // Divide by power of ten to get targeted digit in the ones place
+    digit = (int) number / pow(10, places);
+    digit = digit % 10;
 
     switch (digit) {
       case 0:
