@@ -2,7 +2,7 @@
 // chp8.c
 // chp-Structures
 //
-// Created by @HKuz on 2/9/17
+// Created by @HKuz on 3/X/17
 // Exercises from Chapter 8: Working with Structures
 //
 

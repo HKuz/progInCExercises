@@ -74,7 +74,7 @@ int main(void) {
   // Exercise 7.09
   printf("---------------\n");
   printf("Exercise 7.09\n\n");
-
+  
   printf("\n\n");
 
   // Exercise 7.10
@@ -236,6 +236,7 @@ void quadraticRoots(void) {
 
   float a, b, c, discriminant, sqrtDiscriminant, denominator, root1, root2;
 
+  printf("Quadratic Equation Calculator\n");
   printf("Enter constants a, b, and c, separated by spaces\n");
   scanf("%f %f %f", &a, &b, &c);
 
