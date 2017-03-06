@@ -18,7 +18,8 @@ float squareRootRatio(float x, float epsilon);
 double squareRootDouble(double x, double epsilon);
 long int x_to_the_n(int x, int n);
 void quadraticRoots(void);
-
+int gcd(int u, int v);
+int lcm(int u, int v);
 
 int main(void) {
   // Execution of exercise functions
@@ -74,7 +75,9 @@ int main(void) {
   // Exercise 7.09
   printf("---------------\n");
   printf("Exercise 7.09\n\n");
-  
+  lcm(15, 10);
+  lcm(0, 12);
+  lcm(-2, 4);
   printf("\n\n");
 
   // Exercise 7.10
@@ -252,8 +255,39 @@ void quadraticRoots(void) {
     printf("The roots for %.1fx^2 + %.1fx + %.1f are: %.2f and %.2f\n", a, b, c, root1, root2);
   }
 
-  return;
 }
+
+int gcd(int u, int v) {
+  // Inputs two positive integers, returns integer for greatest common divisor
+  // Program 7.6 from Programming in C Fourth Edition
+
+  int temp;
+
+  while (v != 0) {
+    temp = u % v;
+    u = v;
+    v = temp;
+  }
+
+  return u;
+}
+
+int lcm(int u, int v) {
+  // Inputs two positive integers, returns integer for least common multiple
+
+  if (u < 0 || v < 0) {
+    printf("Error: both parameters must be >= 0.\n");
+    return 1;
+  }
+
+  int result;
+
+  result = (u * v) / gcd(u, v);
+  printf("The least common multiple of %i and %i is %i.\n", u, v, result);
+
+  return result;
+}
+
 
 /*
   To compile and run with GNU compiler:
