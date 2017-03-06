@@ -7,7 +7,7 @@
 //
 
 #include <stdio.h>
-
+#include <math.h>
 
 // Function Prototypes
 int calculateTriangularNumber(int n);
@@ -20,6 +20,9 @@ long int x_to_the_n(int x, int n);
 void quadraticRoots(void);
 int gcd(int u, int v);
 int lcm(int u, int v);
+int prime(int n);
+int arraySum(int arr[], int length);
+
 
 int main(void) {
   // Execution of exercise functions
@@ -83,13 +86,18 @@ int main(void) {
   // Exercise 7.10
   printf("---------------\n");
   printf("Exercise 7.10\n\n");
-
+  prime(-2);
+  prime(2);
+  prime(3);
+  prime(4);
+  prime(101);
   printf("\n\n");
 
   // Exercise 7.11
   printf("---------------\n");
   printf("Exercise 7.11\n\n");
-
+  int testArray[4] = {1, 2, 3, 4};
+  arraySum(testArray, 4);
   printf("\n\n");
 
   // Exercise 7.12
@@ -288,6 +296,54 @@ int lcm(int u, int v) {
   return result;
 }
 
+int prime(int n) {
+  // Checks if n is prime. Returns 1 if it is prime, 0 if not, -1 for an error
+
+  int isPrime = 1;
+  double sqRootOfN = sqrt(n);
+
+  // Input check
+  if (n < 0) {
+    printf("Error: %i must be a positive integer to check if it's prime.\n", n);
+    return -1;
+  }
+
+  // Positive integers
+  if (n < 2) {
+    // n is 1 or 0
+    isPrime = 0;
+  } else {
+    // n is any other positive integer
+    for (int i = 2; i <= sqRootOfN; i++) {
+      if (n == 2) {
+        break;
+      }
+      if (n % i == 0) {
+        isPrime = 0;
+        break;
+      }
+    }
+  }
+
+  if (isPrime) {
+    printf("%i is a prime number!\n", n);
+  } else {
+    printf("%i is not a prime number.\n", n);
+  }
+
+  return isPrime;
+}
+
+int arraySum(int arr[], int length) {
+  // Inputs an array of integers and its length. Returns the sum of the array values
+
+  int sum = 0;
+  for (int i = 0; i < length; i++) {
+    sum += arr[i];
+  }
+  printf("The sum of your array values is %i.\n", sum);
+  return sum;
+}
 
 /*
   To compile and run with GNU compiler:
