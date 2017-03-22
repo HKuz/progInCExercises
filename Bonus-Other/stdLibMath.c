@@ -44,18 +44,32 @@ int main(int argc, char const *argv[]) {
   double a = 2;
   double b = 7;
   double c = 5.134576;
+  double d = -6.78143;
 
   // Examples
+  printf("PI in math.h is %f.\n", M_PI);
+  double cosiney = cos(M_PI);
+  printf("COS: The cosine of radian angle %g is %g.\n", M_PI, cosiney);
+  double siney = sin(M_PI);
+  printf("SIN: The sine of radian angle %g is %g.\n", M_PI, siney);
+  double expy = exp(a);
+  printf("EXP: e raised to the %gnd power is %g.\n", a, expy);
   double power = pow(a, b);
-  printf("POW: %g raised to the %g is %g.\n", a, b, power);
+  printf("POW: %g raised to the %gth power is %g.\n", a, b, power);
   double root = sqrt(b);
   printf("SQRT: The square root of %g is %g.\n", b, root);
-  double ceiling = ceil(c);
-  printf("CEIL: The largest integer value >= to %g is %g.\n", c, ceiling);
   double loggy = log(b);
   printf("LOG: The natural log of %g is %g.\n", b, loggy);
   double logTen = log10(b);
   printf("LOG10: The log (base 10) of %g is %g.\n", b, logTen);
+  double ceiling = ceil(c);
+  printf("CEIL: The largest integer value >= to %g is %g.\n", c, ceiling);
+  double floory = floor(c);
+  printf("FLOOR: The largest integer value <= to %g is %g.\n", c, floory);
+  double fabsy = fabs(d);
+  printf("FABS: The absolute value of %g is %g.\n", d, fabsy);
+  double moddy = fmod(b, a);
+  printf("FMOD: The remainder of %g divided by %g is %g.\n", b, a, moddy);
 
   return 0;
 }
