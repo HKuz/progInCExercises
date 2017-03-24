@@ -22,6 +22,20 @@ int gcd(int u, int v);
 int lcm(int u, int v);
 int prime(int n);
 int arraySum(int arr[], int length);
+void displayMatrix(int nRows, int nCols, int matrix[nRows][nCols]);
+void transposeMatrix(int nRows, int nCols, int matrix[nRows][nCols],
+                    int tMatrix[nCols][nRows]);
+void sort(int a[], int n, _Bool type);
+void getNumberAndBase(void);
+void convertNumber(void);
+void displayConvertedNumber(void);
+
+
+// Global Variables
+int convertedNumber[64];
+long int numberToConvert;
+int base;
+int digit;
 
 
 int main(void) {
@@ -72,7 +86,7 @@ int main(void) {
   // Exercise 7.08
   printf("---------------\n");
   printf("Exercise 7.08\n\n");
-  quadraticRoots();
+  //quadraticRoots();
   printf("\n\n");
 
   // Exercise 7.09
@@ -103,24 +117,49 @@ int main(void) {
   // Exercise 7.12
   printf("---------------\n");
   printf("Exercise 7.12\n\n");
+  int origRows = 4;
+  int origCols = 5;
+  int origMatrix[4][5] = {
+    { 1,  2,  3,  4,  5},
+    { 6,  7,  8,  9, 10},
+    {11, 12, 13, 14, 15},
+    {16, 17, 18, 19, 20}
+  };
+  int transposedMatrix[origCols][origRows];
 
+  printf("Original matrix is:\n\n");
+  displayMatrix(origRows, origCols, origMatrix);
+  transposeMatrix(origRows, origCols, origMatrix, transposedMatrix);
+  printf("Transposed matrix is:\n\n");
+  displayMatrix(origCols, origRows, transposedMatrix);
   printf("\n\n");
 
   // Exercise 7.13
   printf("---------------\n");
   printf("Exercise 7.13\n\n");
-
-  printf("\n\n");
-
-  // Exercise 7.14
-  printf("---------------\n");
-  printf("Exercise 7.14\n\n");
-
+  int sortingArray1[8] = {34, -5, 6, 0, 12, 100, 56, 22};
+  sort(sortingArray1, 8, 0);
+  sort(sortingArray1, 8, 1);
   printf("\n\n");
 
   // Exercise 7.15
   printf("---------------\n");
   printf("Exercise 7.15\n\n");
+  getNumberAndBase();
+  convertNumber();
+  displayConvertedNumber();
+  printf("\n\n");
+
+  // Exercise 7.16
+  printf("---------------\n");
+  printf("Exercise 7.15\n\n");
+  printf("Convert as many numbers as you like. Enter 0 to quit.\n");
+  do {
+    getNumberAndBase();
+    convertNumber();
+    displayConvertedNumber();
+  }
+  while (numberToConvert != 0);
 
   printf("\n\n");
 
@@ -344,6 +383,141 @@ int arraySum(int arr[], int length) {
   printf("The sum of your array values is %i.\n", sum);
   return sum;
 }
+
+void displayMatrix(int nRows, int nCols, int matrix[nRows][nCols]) {
+  // Prints a Row x Column matrix
+
+  int r, c;
+
+  for (r = 0; r < nRows; r++) {
+    for (c = 0; c < nCols; c++) {
+      printf("%5i", matrix[r][c]);
+    }
+    printf("\n");
+  }
+
+  printf("\n");
+
+  return;
+}
+
+void transposeMatrix(int nRows, int nCols, int matrix[nRows][nCols], int tMatrix[nCols][nRows]) {
+  // Takes an MxN matrix and transposes it to an NxM matrix
+
+  int r, c;
+
+  for (r = 0; r < nRows; r++) {
+    for (c = 0; c < nCols; c++) {
+      tMatrix[c][r] = matrix[r][c];
+    }
+  }
+
+  return;
+}
+
+void sort(int a[], int n, _Bool type) {
+  // Sorts an array a with n items. Type is 0 for ascending, 1 for descending
+
+  int i, j, k, temp;
+
+  if (type) {
+    printf("Descending order sort\n");
+  }
+  else {
+    printf("Ascending order sort\n");
+  }
+
+  printf("Array before the sort:\n");
+  for (k = 0; k < n; k++) {
+    printf("%i ", a[k]);
+  }
+
+  for (i = 0; i < n - 1; i++) {
+    for (j = i + 1; j < n; j++) {
+      // Checks for both ascending sort and new item is less than current item,
+      // OR for both descending sort and new item is greater than current item
+      // Either of those condition true, then swap the items
+      if ( (type == 0 && a[j] < a[i]) || (type == 1 && a[j] > a[i]) ) {
+        temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+      }
+    }
+  }
+
+  printf("\nArray after the sort:\n");
+  for (k = 0; k < n; k++) {
+    printf("%i ", a[k]);
+  }
+  printf("\n");
+
+  return;
+}
+
+void getNumberAndBase(void) {
+  printf("Number to be converted? ");
+  scanf("%li", &numberToConvert);
+
+  if (numberToConvert == 0) {
+    return;
+  }
+
+  printf("Base to convert to (2-16)? ");
+  scanf("%i", &base);
+
+  while (base < 2 || base > 16) {
+    printf("Enter a valid base between 2 and 16: ");
+    scanf("%i", &base);
+  }
+
+  return;
+}
+
+void convertNumber(void) {
+  digit = 0;
+
+  if (numberToConvert == 0) {
+    return;
+  }
+
+  do {
+    convertedNumber[digit] = numberToConvert % base;
+    digit++;
+    numberToConvert /= base;
+  }
+  while (numberToConvert != 0);
+
+  // Reset numberToConvert
+  numberToConvert = 1;
+
+  return;
+}
+
+void displayConvertedNumber(void) {
+  const char baseDigits[16] = {
+    '0', '1', '2', '3', '4', '5', '6', '7',
+    '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
+  };
+  int nextDigit;
+
+  if (numberToConvert == 0) {
+    return;
+  }
+
+  printf("Converted number = ");
+
+  for (--digit; digit >= 0; --digit) {
+    nextDigit = convertedNumber[digit];
+    printf("%c", baseDigits[nextDigit]);
+    // Clear array value
+    convertedNumber[digit] = 0;
+  }
+
+  printf("\n");
+
+  return;
+}
+
 
 /*
   To compile and run with GNU compiler:
