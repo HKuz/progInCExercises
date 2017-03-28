@@ -2,7 +2,7 @@
 // chp8.c
 // chp-Structures
 //
-// Created by @HKuz on 3/X/17
+// Created by @HKuz on 3/27/17
 // Exercises from Chapter 8: Working with Structures
 //
 
@@ -10,6 +10,11 @@
 
 
 // Function Prototypes
+struct elapsedTime(struct time1, struct time2);
+void showDayFromDate(struct date);
+struct time timeUpdate(struct time now);
+void dateUpdate(void);
+struct clockKeeper(struct dateAndTime);
 
 
 int main(void) {
